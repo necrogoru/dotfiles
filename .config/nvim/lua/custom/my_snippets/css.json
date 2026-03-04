@@ -1,0 +1,11 @@
+{
+	"Add self variable with nested base": {
+		"prefix": "self",
+		"body": [
+			"\\$self: .$1;",
+			"",
+			"$(self) {$2}"
+		],
+		"description": "Load $self variable"
+	}
+}

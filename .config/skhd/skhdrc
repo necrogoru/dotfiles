@@ -1,0 +1,39 @@
+# focus window
+alt - j : yabai -m window --focus west
+alt - k : yabai -m window --focus south
+alt - i : yabai -m window --focus north
+alt - l : yabai -m window --focus east
+
+# swap managed window
+shift + alt - i : yabai -m window --swap north
+shift + alt - k : yabai -m window --swap south
+shift + alt - j : yabai -m window --swap west
+shift + alt - l : yabai -m window --swap east
+
+# balance size of windows
+shift + alt - 0 : yabai -m space --balance
+
+# focus monitor
+ctrl + alt - 1 : yabai -m display --focus 1
+ctrl + alt - 2 : yabai -m display --focus 2
+
+# Spectacle-like window positions grid:position:size
+alt + cmd - left  : yabai -m window --grid 1:2:0:0:1:2   # left half
+alt + cmd - right : yabai -m window --grid 1:2:1:0:1:2   # right half
+ctrl + cmd - right : yabai -m window --grid 10:10:7:0:3:5   # right half
+alt + cmd - up    : yabai -m window --grid 2:1:0:0:2:1   # top half
+alt + cmd - down  : yabai -m window --grid 2:1:0:1:2:1   # bottom half
+alt + cmd - f     : yabai -m window --grid 1:1:0:0:1:1   # maximize
+alt + cmd - c     : yabai -m window --grid 4:4:1:0:2:4   # center
+alt + cmd + shift - left  : yabai -m window --grid 10:10:0:0:7:10   # left 70%
+alt + cmd + shift - right : yabai -m window --grid 10:10:7:0:3:10   # right 30%
+
+# move window to space # and focus it
+shift + alt - 1 : yabai -m window --space 1
+shift + alt - 2 : yabai -m window --space 2
+shift + alt - 3 : yabai -m window --space 3
+shift + alt - 4 : yabai -m window --space 4
+
+# reduce and increase window height
+alt + cmd - j : yabai -m window --resize bottom:0:20
+alt + cmd - k : yabai -m window --resize bottom:0:-20

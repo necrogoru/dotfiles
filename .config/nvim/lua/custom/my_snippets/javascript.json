@@ -1,0 +1,28 @@
+{
+	"Add Vue test structure": {
+		"prefix": "vlatest",
+		"body": [
+			"import { shallowMount } from '@vue/test-utils'",
+			"",
+			"import $1 from '@/resources/js/$1.vue'",
+			"",
+			"describe('$1', () => {",
+			"  describe('$1 mounted', () => {",
+			"    let wrapper",
+			"    beforeEach(() => {",
+			"      wrapper = shallowMount($1)",
+			"    })",
+			"",
+			"    it('should have required elements', () => {",
+			"      expect(wrapper.find('$2').exists()).toBeTruthy()",
+			"    })",
+			"  })",
+			"})"
+		],
+		"description": "Add Vue component test"
+	},
+	"Add console info": {
+		"prefix": "cinfo",
+		"body": ["console.info('$1', $1)"]
+	}
+}

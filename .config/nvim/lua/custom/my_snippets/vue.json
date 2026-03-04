@@ -1,0 +1,28 @@
+{
+	"Add Vue component base": {
+		"prefix": "vuets",
+		"body": [
+			"<script lang=\"ts\" setup>",
+			"import './_index.css'",
+			"import type { Props } from './types'",
+			"",
+			"defineProps<Props>()",
+			"$2",
+			"</script>",
+			"",
+			"<script lang=\"ts\">",
+			"export default {",
+			"  name: '$1'",
+			"}",
+			"</script>",
+			"",
+			"<template>",
+			"  <div>",
+			"    $1",
+			"  </div>",
+			"</template>",
+			""
+		],
+		"description": "Create a vue component base without style tag"
+	}
+}
