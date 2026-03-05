@@ -15,7 +15,8 @@ local vue_ls = { 'vue-language-server', '--stdio' }
 local lspconfig_util = require 'lspconfig.util'
 local volar_root_dir = lspconfig_util.root_pattern 'package.json'
 
-local home = os.getenv("HOME")
+local node_bin = vim.fn.trim(vim.fn.system("which node"))
+local node_prefix = vim.fn.fnamemodify(node_bin, ":h:h")
 vim.lsp.config("ts_ls", {
   cmd = { "typescript-language-server", "--stdio" },
   filetypes = { "typescript", "javascript", "vue" },
@@ -26,7 +27,7 @@ vim.lsp.config("ts_ls", {
     plugins = {
       {
         name = "@vue/typescript-plugin",
-        location = home .. "/.nvm/versions/node/v22.14.0/lib/node_modules/@vue/language-server",
+        location = node_prefix .. "/lib/node_modules/@vue/language-server",
         languages = {
           "typescript",
           "vue"
@@ -46,7 +47,7 @@ vim.lsp.config("vue_ls", {
   capabilities = capabilities,
   init_options = {
     typescript = {
-      tsdk = home .. "/.nvm/versions/node/v20.9.0/lib/node_modules/typescript/lib"
+      tsdk = node_prefix .. "/lib/node_modules/typescript/lib"
     },
     languageFeatures = {
       implementation = true,

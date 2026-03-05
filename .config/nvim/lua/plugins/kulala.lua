@@ -1,3 +1,7 @@
+local function node_path_resolver()
+  return vim.fn.trim(vim.fn.system("which node"))
+end
+
 return {
   {
     "mistweaverco/kulala.nvim",
@@ -6,6 +10,9 @@ return {
       global_keymaps = true,
       global_keymaps_prefix = "<leader>R",
       kulala_keymaps_prefix = "",
+      scripts = {
+        node_path_resolver = node_path_resolver,
+      }
     },
   },
 }
