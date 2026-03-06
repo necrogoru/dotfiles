@@ -19,13 +19,31 @@ map('n', '<leader>yp', function()
     vim.notify('Copied: ' .. path, vim.log.levels.INFO)
 end, { desc = 'Copy relative file path' })
 
-map("n", "<leader>th", ":Telescope colorscheme<CR>", { desc = "telescope themes" })
-
 map("n", "<leader>h", ':BufferLineCyclePrev<CR>', { silent = true, desc = "Go to previous buffer" })
 map("n", "<leader>l", ':BufferLineCycleNext<CR>', { silent = true, desc = "Go to next buffer" })
 map("n", "<leader>j", ':BufferLineMoveNext<CR>', { silent = true, desc = "Move buffer to next" })
 map("n", "<leader>k", ':BufferLineMovePrev<CR>', { silent = true, desc = "Move buffer to previous" })
 
+-- telescope
+map("n", "<leader>th", ":Telescope colorscheme<CR>", { desc = "telescope themes" })
+map("n", "<leader>fw", function()
+
+  require("telescope.builtin").live_grep({
+    additional_args = function()
+      return { "--hidden", "--glob", "!.git/*" }
+    end,
+  })
+end, { desc = "telescope live grep" })
+map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "telescope find buffers" })
+map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "telescope help page" })
+map("n", "<leader>ma", "<cmd>Telescope marks<CR>", { desc = "telescope find marks" })
+map("n", "<leader>fo", function()
+  require("telescope.builtin").oldfiles({ cwd_only = true })
+end, { desc = "telescope find oldfiles (project only)" })
+map("n", "<leader>fz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "telescope find in current buffer" })
+map("n", "<leader>cm", "<cmd>Telescope git_commits<CR>", { desc = "telescope git commits" })
+map("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { desc = "telescope git status" })
+map("n", "<leader>pt", "<cmd>Telescope terms<CR>", { desc = "telescope pick hidden term" })
 map("n", "<leader>ff", ":Telescope find_files find_command=rg,--ignore,--hidden,--files,--glob,!.git/*<CR>", { desc = "Find files" })
 map("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Toggle NvimTree" })
 map("n", "<leader>fc", function()
