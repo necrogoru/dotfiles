@@ -53,7 +53,7 @@ end)
 vim.opt.termguicolors = true
 
 if vim.g.neovide then
-  vim.o.guifont = "VictorMono Nerd Font:h15"
+  vim.o.guifont = "VictorMono Nerd Font:h15:b"
   vim.g.neovide_text_contrast = 0.1
   vim.g.neovide_text_gamma = 0.8
   vim.g.neovide_opacity = 0.9
