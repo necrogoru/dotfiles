@@ -2,6 +2,11 @@ vim.g.mapleader = " "
 
 require('config.options')
 
+local cargo_bin = vim.fn.expand("~/.cargo/bin")
+if vim.fn.isdirectory(cargo_bin) == 1 and not vim.env.PATH:match(vim.pesc(cargo_bin)) then
+  vim.env.PATH = cargo_bin .. ":" .. vim.env.PATH
+end
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   vim.fn.system({
