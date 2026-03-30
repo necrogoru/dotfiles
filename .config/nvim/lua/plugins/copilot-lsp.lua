@@ -21,4 +21,43 @@ return {
             end
         end, { desc = "Accept Copilot NES suggestion", expr = true })
     end,
+    config = function()
+        local ok, util = pcall(require, "copilot-lsp.util")
+        if not ok or util._codex_safe_hl_text_to_virt_lines then
+            return
+        end
+
+        local original = util.hl_text_to_virt_lines
+        local warned = false
+
+        local function plain_virt_lines(text)
+            local lines = vim.split(text or "", "\n", { plain = true })
+            return vim.iter(lines)
+                :map(function(line)
+                    return { { line, nil } }
+                end)
+                :totable()
+        end
+
+        util.hl_text_to_virt_lines = function(text, lang)
+            local ok_highlight, virt_lines = pcall(original, text, lang)
+            if ok_highlight then
+                return virt_lines
+            end
+
+            if not warned then
+                warned = true
+                vim.schedule(function()
+                    vim.notify(
+                        "copilot-lsp NES preview highlight fallback enabled after renderer error",
+                        vim.log.levels.WARN
+                    )
+                end)
+            end
+
+            return plain_virt_lines(text)
+        end
+
+        util._codex_safe_hl_text_to_virt_lines = true
+    end,
 }
